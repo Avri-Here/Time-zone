@@ -3,17 +3,25 @@ import Clock from "./Clock";
 class All extends React.Component {
   constructor(props) {
     super(props);
-    this.setState = this.setState.bind(this);
     this.state = { Interval: null, Double: null, Random: null };
   }
   Reset() {
     this.setState({ ...this.state, Interval: 1000 });
+    setTimeout(() => {
+      this.setState({ ...this.state, Interval: null });
+    }, 1);
   }
   DoubleAll() {
     this.setState({ ...this.state, Double: 2 });
+    setTimeout(() => {
+      this.setState({ ...this.state, Double: null });
+    }, 5);
   }
   Randomize() {
     this.setState({ ...this.state, Random: Math.floor(Math.random() * 10) });
+    setTimeout(() => {
+      this.setState({ ...this.state, Random: null });
+    }, 5);
   }
   render() {
     return (
@@ -49,17 +57,14 @@ class All extends React.Component {
           <Clock
             Tinezone={"Asia/Jerusalem"}
             StateDad={this.state}
-            Fundad={this.setState}
           />
           <Clock
             Tinezone={"America/Argentina/Buenos_Aires"}
             StateDad={this.state}
-            Fundad={this.setState}
           />
           <Clock
             Tinezone={"America/New_York"}
             StateDad={this.state}
-            Fundad={this.setState}
           />
       </>
     );

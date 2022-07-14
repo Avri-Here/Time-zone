@@ -22,27 +22,32 @@ class Clock extends React.Component {
   }
   componentDidUpdate() {
     if (this.props.StateDad.Interval === 1000) {
-      this.props.Fundad({ Interval: null });
-      this.setState({
-        ...this.state,
-        SetInterval: 1000,
-      });
+      setTimeout(() => {
+        this.setState({
+          ...this.state,
+          SetInterval: 1000,
+        });
+      }, 5);
+      console.log(this.props.StateDad.Interval);
     }
     if (this.props.StateDad.Double === 2) {
-      this.setState({
-        SetInterval:
-          this.state.SetInterval === 1000
-            ? this.state.SetInterval
-            : this.state.SetInterval * this.props.StateDad.Double,
-      });
-      this.props.Fundad({ Double: null });
+      setTimeout(() => {
+        this.setState({
+          SetInterval:
+            this.state.SetInterval === 1000
+              ? this.state.SetInterval
+              : this.state.SetInterval * this.props.StateDad.Double,
+        });
+      }, 5);
     }
-    if (this.props.StateDad.Random > 0) {
-      this.setState({
-        ...this.state,
-        SetInterval: this.props.StateDad.Random * 1000,
-      });
-      this.props.Fundad({ Random: null });
+    if (this.props.StateDad.Random !== null) {
+      let LocalRandom = this.props.StateDad.Random
+      setTimeout(() => {
+        this.setState({
+          ...this.state,
+          SetInterval: LocalRandom * 1000,
+        });
+      }, 5);
     }
     clearInterval(this.updateTime);
     this.updateTime = setInterval(() => {
